@@ -12,7 +12,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     if($user && password_verify($password, $user['password'])){
         $_SESSION['user_id'] = $user['id'];
-        header("Location: profile.php");
+        echo "Login successful! <a href='dashboard.php'>Go to Dashboard</a>";
         exit();
     } else {
         echo "Invalid email or password!";

@@ -1,0 +1,24 @@
+/* .login_body{
+    background: linear-gradient(
+        rgba(255,255,255,0.1),
+        rgba(255,255,255,0.8)
+    ),
+    url("../assets/landing_pg_bg_img.jpg") center/cover no-repeat;
+    display: flex;
+    height: fit-content;
+} */
+.login_body {
+    
+    background: linear-gradient(
+        rgba(255,255,255,0.1),
+        rgba(255,255,255,0.8)
+    ),
+    url("../assets/landing_pg_bg_img.jpg") center/cover no-repeat;
+    height: fit-content;
+    align-items: center;
+    display: flex;
+   
+}
+#login_container {
+    margin-top: 6cm;
+}

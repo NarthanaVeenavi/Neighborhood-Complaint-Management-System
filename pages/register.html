@@ -3,12 +3,19 @@
 <head>
     <title>Register</title>
     <link rel="stylesheet" href="../css/register.css">
+    <link rel="stylesheet" href="../css/landing_page.css">
 </head>
-<body>
+<body class="reg_body">
+    <header class="header">
+        <div class="logo"><a href="landing_page.html">NeighborCare</a></div>
+        <nav>
+            <a href="login.html">Login</a>
+            <a href="register.html" class="register">Register</a>
+        </nav>
+    </header>  
 
 <div class="container">
     <h2>Resident Registration</h2>
-
     <form method="post" action="../register.php" onsubmit="return validateForm();">
 
         <label>First Name</label>

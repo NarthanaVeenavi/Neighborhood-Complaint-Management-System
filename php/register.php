@@ -10,7 +10,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
     $sql = "INSERT INTO residents (first_name, last_name, apartment_no, phone, email, password)
-            VALUES ('$name', '$last_name', '$apartment_no', '$phone', '$email', '$password')";
+            VALUES ('$first_name', '$last_name', '$apartment_no', '$phone', '$email', '$password')";
 
     if(mysqli_query($conn, $sql)){
         echo "Registration successful! <a href='login.html'>Login here</a>";

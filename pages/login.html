@@ -1,15 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <title>Login | NeighborCare</title>
+
+    <!-- Reuse existing styles -->
+    <link rel="stylesheet" href="../css/register.css">
+    <link rel="stylesheet" href="../css/landing_page.css">
+    <link rel="stylesheet" href="../css/login.css">
 </head>
-<body>
-<h2>Resident Login</h2>
-<form method="post" action="../login.php">
-    Email: <input type="email" name="email" required><br>
-    Password: <input type="password" name="password" required><br>
-    <input type="submit" value="Login">
-</form>
-<a href="register.html">Don't have an account? Register</a>
+
+<body class="login_body">
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <a href="landing_page.html">NeighborCare</a>
+        </div>
+        <nav>
+            <a href="login.php" class="register">Login</a>
+            <a href="register.html">Register</a>
+        </nav>
+    </header>
+
+    <!-- Login Form -->
+    <div class="container" id="login_container">
+        <h2>Resident Login</h2>
+
+        <form method="post" action="../login.php">
+
+            <label>Email</label>
+            <input type="email" name="email" required>
+
+            <label>Password</label>
+            <input type="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <div class="link">
+            <a href="register.html">Don’t have an account? Register</a>
+        </div>
+    </div>
+
 </body>
 </html>
