@@ -1,16 +1,20 @@
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f4f6f8;
+.reg_body{
+    background: linear-gradient(
+        rgba(255,255,255,0.1),
+        rgba(255,255,255,0.8)
+    ),
+    url("../assets/landing_pg_bg_img.jpg") center/cover no-repeat;
+    height: fit-content;
+    align-items: center;
+    display: flex;
 }
-
 .container {
     width: 400px;
     margin: 80px auto;
-    background: white;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background: #f4f6f8;
 }
 
 h2 {
@@ -47,7 +51,6 @@ button {
     padding: 12px;
     border: none;
     border-radius: 4px;
-    font-size: 16px;
     cursor: pointer;
 }
 
