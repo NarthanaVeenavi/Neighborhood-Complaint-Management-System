@@ -8,26 +8,19 @@
     <link rel="stylesheet" href="../css/register.css">
     <link rel="stylesheet" href="../css/landing_page.css">
     <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 
 <body class="login_body">
 
     <!-- Header -->
-    <header class="header">
-        <div class="logo">
-            <a href="landing_page.html">NeighborCare</a>
-        </div>
-        <nav>
-            <a href="login.php" class="register">Login</a>
-            <a href="register.html">Register</a>
-        </nav>
-    </header>
+    <?php include '../includes/header.php'; ?>
 
     <!-- Login Form -->
     <div class="container" id="login_container">
         <h2>Resident Login</h2>
 
-        <form method="post" action="../login.php">
+        <form method="post" action="../php/login.php">
 
             <label>Email</label>
             <input type="email" name="email" required>
@@ -39,9 +32,9 @@
         </form>
 
         <div class="link">
-            <a href="register.html">Don’t have an account? Register</a>
+            <a href="register.php">Don’t have an account? Register</a>
         </div>
     </div>
-
+    <?php include '../includes/footer.php'; ?>
 </body>
 </html>

@@ -1,28 +1,12 @@
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f4f6f8;
-}
 .reg_body{
     background: linear-gradient(
         rgba(255,255,255,0.1),
         rgba(255,255,255,0.8)
     ),
     url("../assets/landing_pg_bg_img.jpg") center/cover no-repeat;
-    display: flex;
     height: fit-content;
-}
-.logo {
-    font-size: 22px;
-    font-weight: 700;
-    color: #ffffff;
-    margin-left: 70px;
-}
-.header div a {
-    margin-left: 20px;
-    text-decoration: none;
-    color: #ffffff;
-    font-weight: 500;
+    align-items: center;
+    display: flex;
 }
 .container {
     width: 400px;
@@ -67,7 +51,6 @@ button {
     padding: 12px;
     border: none;
     border-radius: 4px;
-    font-size: 16px;
     cursor: pointer;
 }
 
@@ -94,39 +77,3 @@ button:hover {
     font-size: 14px;
     text-align: center;
 }
-/* Hero with Background Image */
-.hero {
-    min-height: 60vh;
-    background: linear-gradient(
-        rgba(255,255,255,0.1),
-        rgba(255,255,255,0.8)
-    ),
-    url("../assets/landing_pg_bg_img.jpg") center/cover no-repeat;
-    display: flex;
-    align-items: center;
-    padding: 0 8%;
-}
-/* Active nav link */
-nav a.register {
-    background-color: #2ecc71;
-    padding: 8px 15px;
-    border-radius: 5px;
-    color: #fff;
-}
-
-/* Smooth form animation */
-.container {
-    animation: fadeIn 0.6s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-

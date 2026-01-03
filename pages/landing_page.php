@@ -6,17 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NeighborCare | Community Complaint System</title>
     <link rel="stylesheet" href="../css/landing_page.css">
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 
 <body>
 
-    <header class="header">
-        <div class="logo">NeighborCare</div>
-        <nav>
-            <a href="login.html">Login</a>
-            <a href="register.html" class="register">Register</a>
-        </nav>
-    </header>
+    <?php include '../includes/header.php'; ?>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -28,8 +23,8 @@
             </p>
 
             <div class="actions">
-                <a href="register.html" class="btn primary">Get Started</a>
-                <a href="login.html" class="btn secondary">Login</a>
+                <a href="register.php" class="btn primary">Get Started</a>
+                <a href="login.php" class="btn secondary">Login</a>
             </div>
         </div>
     </section>
@@ -61,9 +56,7 @@
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2025 NeighborCare. All rights reserved.</p>
-    </footer>
+    <?php include '../includes/footer.php'; ?>
 
 </body>
 

@@ -1,5 +1,5 @@
 <?php
-include './db/db.php';
+include '../db/db.php';
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $first_name = mysqli_real_escape_string($conn, $_POST['first_name']);
@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             VALUES ('$first_name', '$last_name', '$apartment_no', '$phone', '$email', '$password')";
 
     if(mysqli_query($conn, $sql)){
-        echo "Registration successful! <a href='login.html'>Login here</a>";
+        echo "Registration successful! <a href='../pages/login.php'>Login here</a>";
     } else {
         echo "Error: ".mysqli_error($conn);
     }
