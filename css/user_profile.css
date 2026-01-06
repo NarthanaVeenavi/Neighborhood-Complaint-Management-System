@@ -1,0 +1,107 @@
+body {
+    background-color: #f4f6f8;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(
+        rgba(255,255,255,0.1),
+        rgba(255,255,255,0.8)
+    ),
+    url("../assets/landing_pg_bg_img.jpg") center/cover no-repeat;
+    height: fit-content;
+    align-items: center;
+}
+
+.profile-container {
+    max-width: 600px;
+    margin: 70px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #3498db;
+    color: #fff;
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+}
+
+.profile-header h3 {
+    margin: 5px 0;
+}
+
+.profile-header span {
+    color: #777;
+    font-size: 14px;
+}
+
+.profile-info {
+    margin-top: 25px;
+}
+
+.profile-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.profile-row label {
+    font-weight: 600;
+    color: #555;
+}
+
+.profile-actions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    margin: 0 5px;
+}
+
+.btn-edit {
+    background-color: #3498db;
+}
+
+.btn-logout {
+    background-color: #e74c3c;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+.success-message {
+    background: #2ecc71;
+    color: #fff;
+    padding: 14px 25px;
+    border-radius: 6px;
+    margin: 20px auto;
+    width: fit-content;
+    font-weight: bold;
+}
+
+.error-message {
+    background: #e74c3c;
+    color: #fff;
+    padding: 14px 25px;
+    border-radius: 6px;
+    margin: 20px auto;
+    width: fit-content;
+}
