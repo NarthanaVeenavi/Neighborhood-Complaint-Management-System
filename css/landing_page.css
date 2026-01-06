@@ -1,0 +1,95 @@
+.hero {
+    min-height: 70vh;
+    background: linear-gradient(
+        rgba(255,255,255,0.1),
+        rgba(255,255,255,0.5)
+    ),
+    url("../assets/landing_carosal.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    padding: 0 8%;
+    margin-top: -10px;
+}
+
+.hero-content {
+    max-width: 700px;
+}
+
+.hero h1 {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #222427;
+    margin-bottom: 30px;
+}
+
+/* Buttons */
+.btn {
+    padding: 12px 26px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-right: 15px;
+}
+
+.primary {
+    background: #1d4ed8;
+    color: #ffffff;
+}
+
+.secondary {
+    border: 2px solid #1d4ed8;
+    color: #1d4ed8;
+}
+
+/* Features Section */
+.features {
+    padding: 50px 8%;
+    background: #f9fafb;
+}
+
+.features h2 {
+    font-size: 30px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* Feature Cards */
+.feature-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+}
+
+/* Hover Effect */
+.card:hover {
+    transform: translateY(-10px) scale(1.05);  /* slightly lift and enlarge */
+    box-shadow: 0 12px 25px rgba(0,0,0,0.2);   /* stronger shadow */
+    background: #d8cdcd;                        /* subtle color change */
+}
+
+.card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+}
+
+.card h3 {
+    color: #1d4ed8;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #4b5563;
+    line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 32px;
+    }
+}
