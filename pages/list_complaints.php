@@ -1,4 +1,12 @@
 <?php
+session_start();
+require_once '../../db/db.php';
+require_once '../../php/user_model.php';
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../login.php");
+    exit();
+}
 include 'db.php';
 
 // Initialize search variables

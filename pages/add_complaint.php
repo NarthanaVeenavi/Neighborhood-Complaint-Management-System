@@ -1,3 +1,15 @@
+<?php
+session_start();
+require_once '../../db/db.php';
+require_once '../../php/user_model.php';
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../login.php");
+    exit();
+}
+$apartments = getAllApartments();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,9 +39,18 @@
     <input type="email" name="email" id="email" >
     <span id="emailError" class="error"></span>
 
-    <label>House / Apartment No</label>
-    <input type="text" name="house_no">
-    <span id="house_noError" class="error"></span>
+    <label>Apartment</label>
+    <select name="apartment_id" required>
+                    <option value="">-- Select Apartment --</option>
+
+                    <?php while ($apt = $apartments->fetch_assoc()): ?>
+                        <option value="<?= $apt['id'] ?>">
+                            <?= htmlspecialchars($apt['name']) ?>
+                            | Block <?= htmlspecialchars($apt['block']) ?>
+                            | Floor <?= htmlspecialchars($apt['floor']) ?>
+                        </option>
+                    <?php endwhile; ?>
+    </select>
 
     <label>Contact Number</label>
     <input type="text" name="contact_no" >
