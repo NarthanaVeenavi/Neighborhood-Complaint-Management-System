@@ -18,7 +18,7 @@
 
     <!-- Login Form -->
     <div class="container" id="login_container">
-        <h2>Resident Login</h2>
+        <h2>User Login</h2>
 
         <form method="post" action="../php/login.php">
 

@@ -32,19 +32,22 @@ if (isset($_SESSION['first_name'], $_SESSION['last_name'])) {
                 <!-- Admin -->
                 <a href="/Neighborhood Complaint Management System/pages/admin/admin_dashboard.php">Dashboard</a>
                 <a href="/Neighborhood Complaint Management System/pages/admin/view_complaints.php">Complaints</a>
-                <a href="/Neighborhood Complaint Management System/pages/admin/manage_residents.php">Residents</a>
+                <a href="/Neighborhood Complaint Management System/pages/admin/user_list.php">Users</a>
+                <a href="/Neighborhood Complaint Management System/pages/admin/apartment_list.php">Apartments</a>
             <?php else: ?>
                 <!-- Resident -->
-                <a href="/Neighborhood Complaint Management System/pages/resident/dashboard.php">Dashboard</a>
+                <a href="/Neighborhood Complaint Management System/pages/user_dashboard.php">Dashboard</a>
                 <a href="/Neighborhood Complaint Management System/pages/resident/my_complaints.php">My Complaints</a>
                 <a href="/Neighborhood Complaint Management System/pages/resident/new_complaint.php">New Complaint</a>
             <?php endif; ?>
             <!-- Logged user avatar -->
-            <div class="avatar">
-                <?php echo $initials; ?>
-            </div>
+             <a href="/Neighborhood Complaint Management System/pages/profile.php" class="profile-link">
+                <div class="avatar">
+                    <?php echo $initials; ?>
+                </div>
+             </a>
 
-            <a href="/Neighborhood Complaint Management System/pages/logout.php">Logout</a>
+            <a href="/Neighborhood Complaint Management System/pages/logout.php" class="btn">Logout</a>
 
         <?php endif; ?>
 

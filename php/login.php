@@ -23,9 +23,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Role-based redirect
             if ($user['role'] === 'admin') {
-                echo "Login successful! <a href='../pages/admin/admin_dashboard.php'>Go to Admin Dashboard</a>";
+                // echo "Login successful! <a href='../pages/admin/admin_dashboard.php'>Go to Admin Dashboard</a>";
+                header("Location: ../pages/admin/admin_dashboard.php");
             } else {
-                echo "Login successful! <a href='dashboard.php'>Go to Resident Dashboard</a>";
+                header("Location: ../pages/user_dashboard.php");
             }
             exit();
 

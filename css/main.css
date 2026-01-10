@@ -96,13 +96,11 @@ body {
     bottom: 0;
     width: 100%;
 }
-/* footer {
-    background-color: #2c3e50;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-    font-size: 0.95rem;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-} */
+/* Buttons */
+.btn {
+    padding: 12px 26px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-right: 15px;
+    background: #d35400;
+}
