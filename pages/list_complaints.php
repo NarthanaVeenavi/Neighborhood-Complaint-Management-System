@@ -26,8 +26,10 @@ $result = mysqli_query($conn, $sql);
 <head>
     <title>Complaint List</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
+    <?php include '../includes/header.php'; ?>
 <div class="container">
     <h2>Complaint List</h2>
 
@@ -122,6 +124,6 @@ $result = mysqli_query($conn, $sql);
         }
     };
 </script>
-
+<?php include '../includes/footer.php'; ?>
 </body>
 </html>
