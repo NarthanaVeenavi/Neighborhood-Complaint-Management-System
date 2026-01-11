@@ -1,0 +1,351 @@
+/* =========================
+   RESET & BASE
+========================= */
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 0;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================
+   HEADINGS
+========================= */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* =========================
+   FORMS
+========================= */
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    color: #444;
+    display: block;
+    margin-top: 14px;
+    margin-bottom: 4px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* =========================
+   BUTTONS (FORMS)
+========================= */
+form button {
+    margin-top: 20px;
+    padding: 8px 14px;      /* 🔽 reduced padding */
+    width: auto;            /* 🔥 remove full width */
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-form-wrapper {
+    display: flex;
+    gap: 16px;
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
+
+/* Increase input width */
+.search-form {
+    flex: 2;                /* 🔥 makes inputs wider */
+    min-width: 300px;
+}
+
+.search-form input {
+    height: 40px;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+/* Decrease button width */
+.search-btn {
+    flex: 0 0 120px;        /* 🔥 fixed small width */
+    height: 40px;
+    font-size: 14px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .search-form-wrapper {
+        flex-wrap: wrap;
+    }
+
+    .search-btn {
+        width: 100%;
+    }
+}
+
+
+
+/* =========================
+   TABLE
+========================= */
+.complaint-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.complaint-table th,
+.complaint-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.complaint-table th {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.complaint-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.complaint-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.no-data {
+    text-align: center;
+    color: #777;
+    padding: 20px;
+}
+
+/* =========================
+   ACTION BUTTONS (TABLE)
+========================= */
+.actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* Common */
+.edit-btn,
+.delete-btn {
+    min-width: 70px;
+    padding: 6px 0;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+}
+
+/* Edit */
+.edit-btn {
+    background-color: #ffc107;
+    color: #faf9f9;
+}
+
+.edit-btn:hover {
+    background-color: #e0a800;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Delete */
+.delete-btn {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* =========================
+   ADD BUTTON
+========================= */
+.add-btn {
+    display: inline-block;
+    margin-top: 15px;
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.add-btn:hover {
+    background-color: #1e7e34;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* =========================
+   NORMAL LINKS ONLY
+========================= */
+.container a:not(.add-btn):not(.edit-btn):not(.delete-btn) {
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.container a:not(.add-btn):not(.edit-btn):not(.delete-btn):hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   VALIDATION
+========================= */
+.invalid {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 5px rgba(220, 53, 69, 0.3);
+}
+
+.error {
+    color: #dc3545;
+    font-size: 13px;
+    margin-top: 3px;
+}
+
+/* =========================
+   MODAL
+========================= */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 25px;
+    width: 350px;
+    border-radius: 10px;
+    text-align: center;
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 12px;
+}
+
+/* Modal buttons */
+.cancel-btn,
+.confirm-btn {
+    flex: 1;
+    padding: 10px 0;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+}
+
+/* Cancel */
+.cancel-btn {
+    background-color: #d6d6d6;
+    color: #333;
+}
+
+.cancel-btn:hover {
+    background-color: #cfcfcf;
+    text-decoration: none;
+}
+
+/* Delete (Modal Confirm Button) */
+.confirm-btn {
+    background-color: #dc3545;
+    color: #fff !important;
+    text-decoration: none !important;
+    display: inline-block;
+}
+
+.confirm-btn:hover,
+.confirm-btn:focus,
+.confirm-btn:visited {
+    background-color: #c82333;
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 600px) {
+    .container {
+        padding: 18px;
+    }
+}
