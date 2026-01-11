@@ -12,10 +12,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $sql = "INSERT INTO residents (first_name, last_name, apartment_id, phone, email, joining_date, password)
             VALUES ('$first_name', '$last_name', '$apartment_id', '$phone', '$email', '$joining_date', '$password')";
+
     if(mysqli_query($conn, $sql)){
-        header("Location: ../pages/welcome_page.php");
+        // Pass success flag
+        header("Location: ../pages/register.php?success=1");
+        exit();
     } else {
-        echo "Error: ".mysqli_error($conn);
+        // Pass error message
+        $error = urlencode(mysqli_error($conn));
+        header("Location: ../pages/register.php?error=$error");
+        exit();
     }
 }
 ?>

@@ -31,14 +31,14 @@ if (isset($_SESSION['first_name'], $_SESSION['last_name'])) {
             <?php if ($_SESSION['role'] === 'admin'): ?>
                 <!-- Admin -->
                 <a href="/Neighborhood Complaint Management System/pages/admin/admin_dashboard.php">Dashboard</a>
-                <a href="/Neighborhood Complaint Management System/pages/admin/view_complaints.php">Complaints</a>
+                <a href="#">Complaints</a>
                 <a href="/Neighborhood Complaint Management System/pages/admin/user_list.php">Users</a>
                 <a href="/Neighborhood Complaint Management System/pages/admin/apartment_list.php">Apartments</a>
             <?php else: ?>
                 <!-- Resident -->
                 <a href="/Neighborhood Complaint Management System/pages/user_dashboard.php">Dashboard</a>
-                <a href="/Neighborhood Complaint Management System/pages/resident/my_complaints.php">My Complaints</a>
-                <a href="/Neighborhood Complaint Management System/pages/resident/new_complaint.php">New Complaint</a>
+                <a href="#">My Complaints</a>
+                <a href="#">New Complaint</a>
             <?php endif; ?>
             <!-- Logged user avatar -->
              <a href="/Neighborhood Complaint Management System/pages/profile.php" class="profile-link">

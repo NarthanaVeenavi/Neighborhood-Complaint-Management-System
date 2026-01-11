@@ -34,8 +34,8 @@ $apartments = getAllApartments();
             <tr>
                 <th>#</th>
                 <th>Name</th>
-                <th>Floor</th>
-                <th>Block</th>
+                <th style="text-align:center;">Floor</th>
+                <th style="text-align:center;">Block</th>
                 <th style="text-align:center;">Actions</th>
             </tr>
         </thead>
@@ -45,8 +45,8 @@ $apartments = getAllApartments();
                     <tr>
                         <td><?= $row['id'] ?></td>
                         <td><?= htmlspecialchars($row['name']) ?></td>
-                        <td><?= $row['floor'] ?></td>
-                        <td><?= htmlspecialchars($row['block']) ?></td>
+                        <td style="text-align:center;"><?= $row['floor'] ?></td>
+                        <td style="text-align:center;"><?= htmlspecialchars($row['block']) ?></td>
                         <td style="text-align:center;">
                             <a href="edit_apartment.php?id=<?= $row['id'] ?>" class="btn btn-edit"><i class="fas fa-edit"></i> Edit</a>
                             <a href="../../controllers/delete_apartment.php?id=<?= $row['id'] ?>" 

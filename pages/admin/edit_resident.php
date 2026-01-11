@@ -27,7 +27,7 @@ if (!$user) {
 }
 
 $page_title = "Edit Resident";
-$cancel_url = "residents_list.php";
+$cancel_url = "user_list.php";
 $form_action = "../../controllers/edit_resident_admin.php?id=" . $resident_id;
 ?>
 
@@ -42,10 +42,17 @@ $form_action = "../../controllers/edit_resident_admin.php?id=" . $resident_id;
 <body class="reg_body">
 
 <?php include '../../includes/header.php'; ?>
+    <!-- Hidden div to store the session flag -->
+    <div id="profileUpdatedFlag" style="display: none;">
+        <?php echo isset($_SESSION['profile_updated']) && $_SESSION['profile_updated'] === true ? 'true' : 'false'; ?>
+    </div>
+    <!-- Toast container -->
+    <div id="toastContainer"></div>
 
 <?php include '../common_user_profile_form.php'; ?>
 
 <?php include '../../includes/footer.php'; ?>
+<script src="../../js/edit_resident.js"></script>
 
 </body>
 </html>

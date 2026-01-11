@@ -18,6 +18,9 @@
 
     <!-- Login Form -->
     <div class="container" id="login_container">
+        <!-- Toast container -->
+        <div id="toastContainer"></div>
+
         <h2>User Login</h2>
 
         <form method="post" action="../php/login.php">
@@ -35,6 +38,8 @@
             <a href="register.php">Don’t have an account? Register</a>
         </div>
     </div>
+    <!-- Footer -->
     <?php include '../includes/footer.php'; ?>
+    <script src="../js/login.js"></script>
 </body>
 </html>

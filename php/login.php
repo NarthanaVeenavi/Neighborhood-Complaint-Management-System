@@ -22,19 +22,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['last_name'] = $user['last_name'];
 
             // Role-based redirect
+            // Role-based redirect
             if ($user['role'] === 'admin') {
-                // echo "Login successful! <a href='../pages/admin/admin_dashboard.php'>Go to Admin Dashboard</a>";
-                header("Location: ../pages/admin/admin_dashboard.php");
+                header("Location: ../pages/admin/admin_dashboard.php?success=Login successful!");
             } else {
-                header("Location: ../pages/user_dashboard.php");
+                header("Location: ../pages/user_dashboard.php?success=Login successful!");
             }
             exit();
 
         } else {
-            $error = "Invalid email or password!";
+            header("Location: ../pages/login.php?error=Invalid email or password!");
+            exit();
         }
     } else {
-        $error = "Invalid email or password!";
+        header("Location: ../pages/login.php?error=Invalid email or password!");
+        exit();
     }
 }
 ?>

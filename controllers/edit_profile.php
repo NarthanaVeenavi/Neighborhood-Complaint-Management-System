@@ -24,10 +24,12 @@ if ($success) {
     $_SESSION['last_name']  = $_POST['last_name'];
 
     // Redirect back to profile page with success flag
-    header("Location: ../pages/profile.php?updated=1");
+    header("Location: ../pages/edit_profile.php?success=1");
     exit();
 
 } else {
-    header("Location: ../pages/profile.php?error=1");
+    $error = urlencode(mysqli_error($conn));
+    header("Location: ../pages/edit_profile.php?error=$error");
     exit();
-}
+    }
+?>
