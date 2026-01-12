@@ -59,3 +59,18 @@ tr:hover {
 .btn:hover {
     opacity: 0.9;
 }
+
+.clear-btn {
+    padding: 11.5px 20px;
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.clear-btn:hover {
+    background-color: #5a6268;
+}
