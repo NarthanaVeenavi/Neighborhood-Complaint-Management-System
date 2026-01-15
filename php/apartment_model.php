@@ -1,11 +1,38 @@
 <?php
 require_once __DIR__ . '/../db/db.php';
 
-// Get all apartments
 function getAllApartments() {
     global $conn;
-    $sql = "SELECT * FROM apartments ORDER BY created_at DESC";
+    $sql = "SELECT * FROM apartments ORDER BY name ASC";
     return mysqli_query($conn, $sql);
+}
+/**
+ * Get paginated list of apartments
+ */
+function getAllApartmentsPaginated($limit = 10, $offset = 0) {
+    global $conn;
+    $limit  = (int)$limit;
+    $offset = (int)$offset;
+
+    $sql = "SELECT * FROM apartments 
+            ORDER BY name ASC 
+            LIMIT $limit OFFSET $offset";
+
+    return mysqli_query($conn, $sql);
+}
+
+/**
+ * Count total number of apartments
+ */
+function countAllApartments() {
+    global $conn;
+    $sql = "SELECT COUNT(*) as total FROM apartments";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result && $row = mysqli_fetch_assoc($result)) {
+        return (int)$row['total'];
+    }
+    return 0;
 }
 
 // Get single apartment

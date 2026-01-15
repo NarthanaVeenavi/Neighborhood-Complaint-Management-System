@@ -4,7 +4,7 @@ require_once '../../db/db.php';
 require_once '../../php/complaints_model.php';
 
 // Check admin login
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+if (!isset($_SESSION['user_id'])) {
     header("Location: ../login.php");
     exit();
 }
@@ -45,7 +45,8 @@ if (!$complaint) {
         <p><strong>Title:</strong> <?= htmlspecialchars($complaint['title']) ?></p>
         <p><strong>Category:</strong> <?= htmlspecialchars($complaint['category']) ?></p>
         <p><strong>Priority:</strong> <?= htmlspecialchars($complaint['priority']) ?></p>
-        <p><strong>Location:</strong> <?= htmlspecialchars($complaint['location']) ?></p>
+        <p><strong>Location:</strong> <?= htmlspecialchars($complaint['apartment_name']) ?></p>
+        <p><strong>Status:</strong> <?= htmlspecialchars($complaint['status']) ?></p>
         <p><strong>Date of Incident:</strong> <?= htmlspecialchars($complaint['incident_date']) ?></p>
         <p><strong>Description:</strong> <br><?= nl2br(htmlspecialchars($complaint['description'])) ?></p>
 
@@ -57,7 +58,14 @@ if (!$complaint) {
     </div>
 
     <div style="text-align:center;">
-        <a href="list_complaints.php" class="btn-back">Back to Complaint List</a>
+        <?php
+        // Determine back URL based on role
+        $backUrl = 'list_complaints.php'; // default
+        if (isset($_SESSION['role']) && $_SESSION['role'] === 'resident') {
+            $backUrl = '../../pages/list_my_complaints.php';
+        }
+        ?>
+        <a href="<?= $backUrl ?>" class="btn-back">Back to Complaint List</a>
     </div>
 </div>
 

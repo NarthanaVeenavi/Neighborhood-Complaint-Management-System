@@ -9,83 +9,127 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'resident') {
     exit();
 }
 
-// Get search values
-$searchTitle = $_GET['search_title'] ?? '';
+$resident_id   = $_SESSION['user_id'];
+$searchTitle   = $_GET['search_title'] ?? '';
 
-// Fetch resident complaints
-$complaints = getResidentComplaints($_SESSION['user_id'], $searchTitle);
+$page   = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
+$limit  = 10;
+$offset = ($page - 1) * $limit;
+
+$complaints      = getResidentComplaintsPaginated($resident_id, $searchTitle, $limit, $offset);
+$totalComplaints = countResidentComplaints($resident_id, $searchTitle);
+$totalPages      = ceil($totalComplaints / $limit);
+
+$start = $offset + 1;
+$end   = min($offset + $limit, $totalComplaints);
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Complaints</title>
-    <link rel="stylesheet" href="../css/style.css">
+
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/landing_page.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/user_list.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body class="admin_body">
 
-<?php include '../includes/header.php'; ?>   
+<?php include '../includes/header.php'; ?>
 
-<div class="table-container">
+<div class="table-container" style="margin-top: 100px; width: 80%;">
+    <div class="table-header">
+        <h2>My Complaints</h2>
 
-    <h2>Complaints List</h2>
-        <!-- Search Form -->
         <form method="GET" class="search-form-wrapper">
             <div class="search-form">
-                <input type="text" name="search_title" placeholder="Search by Title..."
-                    value="<?= htmlspecialchars($searchTitle) ?>">
+                <input type="text" name="search_title" placeholder="Search by title..." 
+                       value="<?= htmlspecialchars($searchTitle) ?>">
             </div>
-
             <button type="submit" class="search-btn">Search</button>
-             <!-- Clear button -->
-            <button type="button" class="clear-btn" onclick="window.location='list_my_complaints.php'">Clear</button>
+            <button type="button" class="clear-btn" 
+                    onclick="window.location='list_my_complaints.php'">Clear</button>
         </form>
+    </div>
 
-
-    <!-- Complaints Table -->
-    <table class="data-table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Priority</th>
-            <th>Date of Incident</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <?php if ($complaints && mysqli_num_rows($complaints) > 0): ?>
-            <?php while ($row = mysqli_fetch_assoc($complaints)): ?>
-                <tr onclick="window.location='view_complaint.php?id=<?= $row['id'] ?>'" style="cursor: pointer;">
-                    <td><?= $row['id'] ?></td>
-                    <td><?= htmlspecialchars($row['title']) ?></td>
-                    <td><?= htmlspecialchars($row['category']) ?></td>
-                    <td><?= htmlspecialchars($row['priority']) ?></td>
-                    <td><?= htmlspecialchars($row['incident_date']) ?></td>
-                    <td><?= htmlspecialchars($row['status']) ?></td>
-                    <td class="actions">
-                        <a href="edit_complaint.php?id=<?= $row['id'] ?>" class="edit-btn"><i class="fas fa-edit"></i> Edit</a>
-                        <button class="delete-btn" 
-                                onclick="event.stopPropagation(); openDeleteModal('delete_complaint.php?id=<?= $row['id'] ?>')">
-                                <i class="fas fa-trash"></i>
-                            Delete
-                        </button>
-                    </td>
+    <div class="table-scroll">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Priority</th>
+                    <th>Date of Incident</th>
+                    <th>Status</th>
+                    <th>Actions</th>
                 </tr>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <tr>
-                <td colspan="7" class="no-data">No complaints found.</td>
-            </tr>
+            </thead>
+            <tbody>
+            <?php if ($complaints && mysqli_num_rows($complaints) > 0): ?>
+                <?php while ($row = mysqli_fetch_assoc($complaints)): ?>
+                    <tr class="viewable" onclick="window.location='../pages/admin/view_complaint.php?id=<?= $row['id'] ?>'">
+                        <td><?= htmlspecialchars($row['id']) ?></td>
+                        <td><?= htmlspecialchars($row['title']) ?></td>
+                        <td><?= htmlspecialchars($row['category'] ?? '—') ?></td>
+                        <td><?= htmlspecialchars($row['priority'] ?? '—') ?></td>
+                        <td><?= htmlspecialchars($row['incident_date'] ?? '—') ?></td>
+                        <td>
+                            <span class="status-<?= strtolower($row['status'] ?? 'pending') ?>">
+                                <?= htmlspecialchars($row['status'] ?? 'Pending') ?>
+                            </span>
+                        </td>
+                        <td class="action-cell">
+                            <?php if (strtolower($row['status'] ?? '') === 'pending' || strtolower($row['status'] ?? '') === 'open'): ?>
+                                <a href="edit_complaint.php?id=<?= $row['id'] ?>" class="btn btn-edit">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                            <?php endif; ?>
+
+                            <button class="btn btn-delete" style="border: none;"
+                                    onclick="event.stopPropagation(); openDeleteModal('delete_complaint.php?id=<?= $row['id'] ?>')">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </td>
+                    </tr>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="7" class="no-data">No complaints found</td>
+                </tr>
+            <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="table-footer">
+        <div class="table-info">
+            Showing <?= $start ?>–<?= $end ?> of <?= $totalComplaints ?> complaints
+        </div>
+
+        <?php if ($totalPages > 1): ?>
+        <div class="pagination">
+            <?php if ($page > 1): ?>
+                <a href="?page=<?= $page-1 ?>&search_title=<?= urlencode($searchTitle) ?>" class="nav-btn">« Previous</a>
+            <?php endif; ?>
+
+            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                <a href="?page=<?= $i ?>&search_title=<?= urlencode($searchTitle) ?>"
+                   class="<?= ($i == $page) ? 'active' : '' ?>">
+                   <?= $i ?>
+                </a>
+            <?php endfor; ?>
+
+            <?php if ($page < $totalPages): ?>
+                <a href="?page=<?= $page+1 ?>&search_title=<?= urlencode($searchTitle) ?>" class="nav-btn">Next »</a>
+            <?php endif; ?>
+        </div>
         <?php endif; ?>
-        </tbody>
-    </table>
+    </div>
 </div>
 
 <!-- Delete Confirmation Modal -->
@@ -101,23 +145,23 @@ $complaints = getResidentComplaints($_SESSION['user_id'], $searchTitle);
 </div>
 
 <script>
-    const modal = document.getElementById("deleteModal");
-    const confirmBtn = document.getElementById("confirmDeleteBtn");
+function openDeleteModal(deleteUrl) {
+    document.getElementById("confirmDeleteBtn").href = deleteUrl;
+    document.getElementById("deleteModal").style.display = "flex";
+}
 
-    function openDeleteModal(deleteUrl) {
-        confirmBtn.href = deleteUrl;
-        modal.style.display = "flex";
-    }
+function closeModal() {
+    document.getElementById("deleteModal").style.display = "none";
+}
 
-    function closeModal() {
-        modal.style.display = "none";
+window.onclick = function(e) {
+    if (e.target === document.getElementById("deleteModal")) {
+        closeModal();
     }
-
-    window.onclick = function (e) {
-        if (e.target === modal) closeModal();
-    }
+}
 </script>
 
 <?php include '../includes/footer.php'; ?>
+
 </body>
 </html>

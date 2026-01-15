@@ -30,26 +30,81 @@ function getResidentById($id) {
     return mysqli_fetch_assoc($result);
 }
 
-/* Get all residents */
-function getAllResidents() {
+function getAllResidents($nameSearch = "", $phoneSearch = "", $limit = 10, $offset = 0) {
     global $conn;
+
     $sql = "SELECT 
-    r.id,
-    r.first_name,
-    r.last_name,
-    r.email,
-    r.phone,
-    r.role,
-    r.joining_date,
-    a.name AS apartment_name,
-    a.block,
-    a.floor
-    FROM residents r
-    LEFT JOIN apartments a ON r.apartment_id = a.id
-    WHERE r.role = 'resident'
-    ORDER BY r.created_at DESC";
+                r.id,
+                r.first_name,
+                r.last_name,
+                r.email,
+                r.phone,
+                r.role,
+                r.joining_date,
+                a.name AS apartment_name,
+                a.block,
+                a.floor
+            FROM residents r
+            LEFT JOIN apartments a ON r.apartment_id = a.id
+            WHERE r.role = 'resident'";
+
+    if (!empty($nameSearch)) {
+        $nameSearch = mysqli_real_escape_string($conn, $nameSearch);
+        $sql .= " AND (r.first_name LIKE '%$nameSearch%' OR r.last_name LIKE '%$nameSearch%')";
+    }
+
+    if (!empty($phoneSearch)) {
+        $phoneSearch = mysqli_real_escape_string($conn, $phoneSearch);
+        $sql .= " AND r.phone LIKE '%$phoneSearch%'";
+    }
+
+    $sql .= " ORDER BY r.id DESC LIMIT $limit OFFSET $offset";
+
     return mysqli_query($conn, $sql);
 }
+
+function countResidents($nameSearch = "", $phoneSearch = "") {
+    global $conn;
+
+    $sql = "SELECT COUNT(*) as total FROM residents r WHERE r.role = 'resident'";
+
+    if (!empty($nameSearch)) {
+        $nameSearch = mysqli_real_escape_string($conn, $nameSearch);
+        $sql .= " AND (r.first_name LIKE '%$nameSearch%' OR r.last_name LIKE '%$nameSearch%')";
+    }
+
+    if (!empty($phoneSearch)) {
+        $phoneSearch = mysqli_real_escape_string($conn, $phoneSearch);
+        $sql .= " AND r.phone LIKE '%$phoneSearch%'";
+    }
+
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+
+    return (int)$row['total'];
+}
+
+
+/* Get all residents */
+// function getAllResidents() {
+//     global $conn;
+//     $sql = "SELECT 
+//     r.id,
+//     r.first_name,
+//     r.last_name,
+//     r.email,
+//     r.phone,
+//     r.role,
+//     r.joining_date,
+//     a.name AS apartment_name,
+//     a.block,
+//     a.floor
+//     FROM residents r
+//     LEFT JOIN apartments a ON r.apartment_id = a.id
+//     WHERE r.role = 'resident'
+//     ORDER BY r.created_at DESC";
+//     return mysqli_query($conn, $sql);
+// }
 
 /* Get resident by ID (Admin) */
 function getResidentByIdAdmin($id) {
