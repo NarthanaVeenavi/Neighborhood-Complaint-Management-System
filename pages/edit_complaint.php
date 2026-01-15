@@ -60,19 +60,17 @@ $complaint = getComplaintById($complaint_id);
 
         <label>Description</label>
         <textarea name="complaint" required><?= htmlspecialchars($complaint['description'] ?? '') ?></textarea>
+
         <label>Location / Apartment</label>
-<select name="apartment_id" required>
-    <option value="">-- Select Apartment --</option>
-    <?php while ($apt = $apartments->fetch_assoc()): ?>
-        <option value="<?= (int)$apt['id'] ?>"
-            <?= ((int)$apt['id'] === (int)($complaint['apartment_id'] ?? 0)) ? 'selected' : '' ?>>
-            <?= htmlspecialchars($apt['name']) ?> | Block <?= htmlspecialchars($apt['block']) ?> | Floor <?= htmlspecialchars($apt['floor']) ?>
-        </option>
-    <?php endwhile; ?>
-</select>
-
-
-
+        <select name="apartment_id" required>
+            <option value="">-- Select Apartment --</option>
+            <?php while ($apt = $apartments->fetch_assoc()): ?>
+                <option value="<?= (int)$apt['id'] ?>"
+                    <?= ((int)$apt['id'] === (int)($complaint['apartment_id'] ?? 0)) ? 'selected' : '' ?>>
+                    <?= htmlspecialchars($apt['name']) ?> | Block <?= htmlspecialchars($apt['block']) ?> | Floor <?= htmlspecialchars($apt['floor']) ?>
+                </option>
+            <?php endwhile; ?>
+        </select>
 
         <label>Date of Incident</label>
         <input type="date" name="incident_date" value="<?= htmlspecialchars($complaint['incident_date'] ?? '') ?>" required>
@@ -92,10 +90,6 @@ $complaint = getComplaintById($complaint_id);
         <br/><br/>
         <button type="submit">Update Complaint</button>
     </form>
-
-    <!-- <div style="text-align:center; margin-top:15px;">
-        <a href="my_complaints.php" class="btn-back">Back to My Complaints</a>
-    </div> -->
 </div>
 
 <script>

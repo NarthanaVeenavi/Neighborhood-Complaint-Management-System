@@ -2,7 +2,6 @@
 require_once __DIR__ . '/../db/db.php';
 
 // Get all complaints
-
 function getAllComplaints($searchName = "", $searchTitle = "", $limit = 10, $offset = 0) {
     global $conn;
 

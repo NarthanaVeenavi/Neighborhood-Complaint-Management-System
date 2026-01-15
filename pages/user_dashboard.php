@@ -48,10 +48,6 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'resident') {
             <span>Complaint Status</span>
         </a>
     </div>
-
-    <div style="text-align:center; margin-top:20px;">
-        <a href="logout.php" class="logout-btn">Logout</a>
-    </div>
 </div>
 
 <?php include '../includes/footer.php'; ?>

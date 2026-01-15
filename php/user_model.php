@@ -84,28 +84,6 @@ function countResidents($nameSearch = "", $phoneSearch = "") {
     return (int)$row['total'];
 }
 
-
-/* Get all residents */
-// function getAllResidents() {
-//     global $conn;
-//     $sql = "SELECT 
-//     r.id,
-//     r.first_name,
-//     r.last_name,
-//     r.email,
-//     r.phone,
-//     r.role,
-//     r.joining_date,
-//     a.name AS apartment_name,
-//     a.block,
-//     a.floor
-//     FROM residents r
-//     LEFT JOIN apartments a ON r.apartment_id = a.id
-//     WHERE r.role = 'resident'
-//     ORDER BY r.created_at DESC";
-//     return mysqli_query($conn, $sql);
-// }
-
 /* Get resident by ID (Admin) */
 function getResidentByIdAdmin($id) {
     global $conn;
