@@ -71,11 +71,10 @@ $end   = min($offset + $limit, $totalApartments);
                             <a href="edit_apartment.php?id=<?= $row['id'] ?>" class="btn btn-edit">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
-                            <a href="../../controllers/delete_apartment.php?id=<?= $row['id'] ?>" 
-                               class="btn btn-delete"
-                               onclick="return confirm('Are you sure you want to delete this apartment?');">
+                            <button class="btn btn-delete" style="border: none;"
+                                    onclick="event.stopPropagation(); openDeleteModal('../../controllers/delete_apartment.php?id=<?= $row['id'] ?>')">
                                 <i class="fas fa-trash"></i> Delete
-                            </a>
+                            </button>
                         </td>
                     </tr>
                 <?php endwhile; ?>
@@ -113,6 +112,20 @@ $end   = min($offset + $limit, $totalApartments);
         <?php endif; ?>
     </div>
 </div>
+
+<!-- Delete Confirmation Modal -->
+<div id="deleteModal" class="modal">
+    <div class="modal-content">
+        <h3>Confirm Delete</h3>
+        <p>Are you sure you want to delete this Apartment?</p>
+        <div class="modal-actions">
+            <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+            <a id="confirmDeleteBtn" class="confirm-btn">Delete</a>
+        </div>
+    </div>
+</div>
+
+<script src="../../js/delete_model.js"></script>
 
 <?php include '../../includes/footer.php'; ?>
 

@@ -24,16 +24,16 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'resident') {
 
 <?php include '../includes/header.php'; ?>
 
-<div class="container">
+<div class="container" style="margin-top: 190px;">
     <h3>Welcome, <?= $_SESSION['first_name'] ?>!</h3>
 
     <div class="dashboard-grid">
-        <a href="my_complaints.php" class="dashboard-card">
+        <a href="list_my_complaints.php" class="dashboard-card">
             <i class="fas fa-list-alt"></i>
             <span>My Complaints</span>
         </a>
 
-        <a href="new_complaint.php" class="dashboard-card">
+        <a href="add_complaint.php" class="dashboard-card">
             <i class="fas fa-plus-circle"></i>
             <span>Submit New Complaint</span>
         </a>

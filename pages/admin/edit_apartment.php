@@ -27,7 +27,7 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/register.css">
 </head>
-<body class="reg_body">
+<body>
 
 <?php include '../../includes/header.php'; ?>
 

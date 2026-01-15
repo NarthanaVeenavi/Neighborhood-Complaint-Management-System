@@ -51,7 +51,7 @@ $end   = min($offset + $limit, $totalComplaints);
                        value="<?= htmlspecialchars($searchTitle) ?>">
             </div>
             <button type="submit" class="search-btn">Search</button>
-            <button type="button" class="clear-btn" 
+            <button type="button" class="clear-btn" style="padding: 12px 20px;"
                     onclick="window.location='list_my_complaints.php'">Clear</button>
         </form>
     </div>
@@ -136,7 +136,7 @@ $end   = min($offset + $limit, $totalComplaints);
 <div id="deleteModal" class="modal">
     <div class="modal-content">
         <h3>Confirm Delete</h3>
-        <p>Are you sure you want to delete this complaint?</p>
+        <p>Are you sure you want to delete this Complaint?</p>
         <div class="modal-actions">
             <button class="cancel-btn" onclick="closeModal()">Cancel</button>
             <a id="confirmDeleteBtn" class="confirm-btn">Delete</a>
@@ -144,23 +144,7 @@ $end   = min($offset + $limit, $totalComplaints);
     </div>
 </div>
 
-<script>
-function openDeleteModal(deleteUrl) {
-    document.getElementById("confirmDeleteBtn").href = deleteUrl;
-    document.getElementById("deleteModal").style.display = "flex";
-}
-
-function closeModal() {
-    document.getElementById("deleteModal").style.display = "none";
-}
-
-window.onclick = function(e) {
-    if (e.target === document.getElementById("deleteModal")) {
-        closeModal();
-    }
-}
-</script>
-
+<script src="../js/delete_model.js"></script>
 <?php include '../includes/footer.php'; ?>
 
 </body>

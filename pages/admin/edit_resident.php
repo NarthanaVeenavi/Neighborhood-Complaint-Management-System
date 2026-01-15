@@ -11,7 +11,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 
 // Get resident ID from URL
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    header("Location: residents_list.php");
+    header("Location: ./user_list.php");
     exit();
 }
 
@@ -22,12 +22,12 @@ $user = getResidentById($resident_id);
 $apartments = getAllApartments();
 
 if (!$user) {
-    header("Location: residents_list.php");
+    header("Location: ./user_list.php");
     exit();
 }
 
 $page_title = "Edit Resident";
-$cancel_url = "user_list.php";
+$cancel_url = "./user_list.php";
 $form_action = "../../controllers/edit_resident_admin.php?id=" . $resident_id;
 ?>
 

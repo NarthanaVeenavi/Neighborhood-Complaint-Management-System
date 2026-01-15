@@ -30,7 +30,7 @@ if (isset($_SESSION['first_name'], $_SESSION['last_name'])) {
 
             <?php if ($_SESSION['role'] === 'admin'): ?>
                 <!-- Admin -->
-                <a href="/Neighborhood Complaint Management System/pages/admin/admin_dashboard.php">Dashboard</a>
+                <a href="/Neighborhood Complaint Management System/pages/admin/reports.php">Dashboard</a>
                 <a href="/Neighborhood Complaint Management System/pages/admin/list_complaints.php">Complaints</a>
                 <a href="/Neighborhood Complaint Management System/pages/admin/user_list.php">Users</a>
                 <a href="/Neighborhood Complaint Management System/pages/admin/apartment_list.php">Apartments</a>

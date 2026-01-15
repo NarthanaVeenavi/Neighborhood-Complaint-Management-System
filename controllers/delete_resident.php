@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 
 // Check if 'id' is present in URL
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    header("Location: ../pages/admin/residents_list.php");
+    header("Location: ../pages/admin/users_list.php");
     exit();
 }
 
@@ -18,20 +18,20 @@ $resident_id = (int) $_GET['id'];
 
 // Prevent admin from deleting themselves
 if ($resident_id === $_SESSION['user_id']) {
-    header("Location: ../pages/admin/residents_list.php?error=self_delete");
+    header("Location: ../pages/admin/user_list.php?error=self_delete");
     exit();
 }
 
 // Get resident details to check role
 $resident = getResidentById($resident_id);
 if (!$resident) {
-    header("Location: ../pages/admin/residents_list.php?error=not_found");
+    header("Location: ../pages/admin/user_list.php?error=not_found");
     exit();
 }
 
 // Prevent deleting another admin
 if ($resident['role'] === 'admin') {
-    header("Location: ../pages/admin/residents_list.php?error=admin_delete");
+    header("Location: ../pages/admin/user_list.php?error=admin_delete");
     exit();
 }
 
@@ -39,9 +39,9 @@ if ($resident['role'] === 'admin') {
 $success = deleteResident($resident_id);
 
 if ($success) {
-    header("Location: ../pages/admin/residents_list.php?deleted=1");
+    header("Location: ../pages/admin/user_list.php?deleted=1");
     exit();
 } else {
-    header("Location: ../pages/admin/residents_list.php?error=1");
+    header("Location: ../pages/admin/user_list.php?error=1");
     exit();
 }

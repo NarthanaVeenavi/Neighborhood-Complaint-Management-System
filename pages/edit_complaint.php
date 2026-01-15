@@ -89,7 +89,7 @@ $complaint = getComplaintById($complaint_id);
             <a href="../uploads/<?= htmlspecialchars($complaint['attachment']) ?>" target="_blank">View current file</a><br><br>
         <?php endif; ?>
         <input type="file" name="attachment" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
-
+        <br/><br/>
         <button type="submit">Update Complaint</button>
     </form>
 

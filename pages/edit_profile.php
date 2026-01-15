@@ -15,7 +15,7 @@ $apartments = getAllApartments();
 ?>
 
 <?php $page_title = "Edit Profile"; ?>
-<?php $cancel_url = "residents_list.php"; ?>
+<?php $cancel_url = "profile.php"; ?>
 <?php $form_action = "../controllers/edit_profile.php"; ?>
 
 <!DOCTYPE html>

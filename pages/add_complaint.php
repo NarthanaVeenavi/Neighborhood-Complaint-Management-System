@@ -38,7 +38,7 @@ $apartments = getAllApartments();
     <link rel="stylesheet" href="../css/register.css">
     <script src="../js/complaint.js" defer></script>
 </head>
-<body class="reg_body">
+<body>
 
 <?php include '../includes/header.php'; ?>
 
@@ -124,8 +124,8 @@ $apartments = getAllApartments();
                 </a>
             </div>
         <?php endif; ?>
-        <input type="file" name="evidence" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
-
+        <input type="file" name="attachment" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+        <br/><br/>
         <button type="submit">
             <?= $isEdit ? 'Update Complaint' : 'Submit Complaint' ?>
         </button>

@@ -52,7 +52,7 @@ $end = min($offset + $limit, $totalResidents);
                 <input type="text" name="search_phone" placeholder="Search by phone..." value="<?= htmlspecialchars($phoneSearch) ?>">
             </div>
             <button type="submit" class="search-btn">Search</button>
-            <button type="button" class="clear-btn" onclick="window.location='user_list.php'">Clear</button>
+            <button type="button" class="clear-btn" onclick="window.location='user_list.php'" style="padding: 12px 20px;">Clear</button>
         </form>
     </div>
 
@@ -97,11 +97,10 @@ $end = min($offset + $limit, $totalResidents);
                                class="btn btn-edit">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
-                            <a href="../../controllers/delete_resident.php?id=<?= $row['id'] ?>" 
-                               class="btn btn-delete"
-                               onclick="return confirm('Are you sure you want to delete this resident?');">
+                            <button class="btn btn-delete" style="border: none;"
+                                    onclick="event.stopPropagation(); openDeleteModal('../../controllers/delete_resident.php?id=<?= $row['id'] ?>')">
                                 <i class="fas fa-trash"></i> Delete
-                            </a>
+                            </button>
                         </td>
                     </tr>
                 <?php endwhile; ?>
@@ -141,6 +140,20 @@ $end = min($offset + $limit, $totalResidents);
         <?php endif; ?>
     </div>
 </div>
+
+<!-- Delete Confirmation Modal -->
+<div id="deleteModal" class="modal">
+    <div class="modal-content">
+        <h3>Confirm Delete</h3>
+        <p>Are you sure you want to delete this Resident?</p>
+        <div class="modal-actions">
+            <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+            <a id="confirmDeleteBtn" class="confirm-btn">Delete</a>
+        </div>
+    </div>
+</div>
+
+<script src="../../js/delete_model.js"></script>
 
 <?php include '../../includes/footer.php'; ?>
 

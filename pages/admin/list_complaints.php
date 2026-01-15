@@ -53,7 +53,7 @@ $end   = min($offset + $limit, $totalComplaints);
                 <input type="text" name="search_title" placeholder="Search by complaint title..." value="<?= htmlspecialchars($searchTitle) ?>">
             </div>
             <button type="submit" class="search-btn">Search</button>
-            <button type="button" class="clear-btn" onclick="window.location='list_complaints.php'">Clear</button>
+            <button type="button" class="clear-btn" onclick="window.location='list_complaints.php'" style="padding: 12px 20px;">Clear</button>
         </form>
     </div>
 

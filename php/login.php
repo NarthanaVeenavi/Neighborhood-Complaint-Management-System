@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Role-based redirect
             // Role-based redirect
             if ($user['role'] === 'admin') {
-                header("Location: ../pages/admin/admin_dashboard.php?success=Login successful!");
+                header("Location: ../pages/admin/reports.php?success=Login successful!");
             } else {
                 header("Location: ../pages/user_dashboard.php?success=Login successful!");
             }

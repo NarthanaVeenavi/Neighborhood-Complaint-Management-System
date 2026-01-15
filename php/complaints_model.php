@@ -73,24 +73,30 @@ function countComplaints($searchName = "", $searchTitle = "") {
 }
 
 // Add complaint
-function createComplaint($resident_id, $title, $category, $description, $priority, $location, $incident_date) {
+function createComplaint($resident_id, $title, $category, $description, $priority, $apartment_id, $incident_date, $attachment = null) {
     global $conn;
 
-    $sql = "INSERT INTO complaints 
-            (resident_id, title, category, description, priority, location, incident_date)
-            VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO complaints
+            (resident_id, title, category, description, priority, location, incident_date, attachment)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = mysqli_prepare($conn, $sql);
+
+    if (!$stmt) {
+        die("Prepare failed: " . mysqli_error($conn));
+    }
+
     mysqli_stmt_bind_param(
         $stmt,
-        "issssis",
+        "isssssss", // s = string, i = integer
         $resident_id,
         $title,
         $category,
         $description,
         $priority,
-        $location,      // apartment_id saved into location column
-        $incident_date
+        $apartment_id, // save apartment ID in location
+        $incident_date,
+        $attachment // filename can be null
     );
 
     return mysqli_stmt_execute($stmt);
@@ -232,6 +238,70 @@ $stmt->bind_param(
 );
 $stmt->execute();
     return $stmt->execute();
+}
+
+/*Summaries*/
+// Total complaints
+function getTotalComplaints() {
+    global $conn;
+    $sql = "SELECT COUNT(*) AS total FROM complaints";
+    $result = mysqli_query($conn, $sql);
+    return mysqli_fetch_assoc($result)['total'] ?? 0;
+}
+
+// Complaints by category
+function getComplaintsByCategory() {
+    global $conn;
+    $sql = "SELECT category, COUNT(*) AS count 
+            FROM complaints 
+            GROUP BY category";
+    return mysqli_query($conn, $sql);
+}
+
+// Complaints by priority
+function getComplaintsByPriority() {
+    global $conn;
+    $sql = "SELECT priority, COUNT(*) AS count 
+            FROM complaints 
+            GROUP BY priority";
+    return mysqli_query($conn, $sql);
+}
+
+// Complaints by status
+function getComplaintsByStatus() {
+    global $conn;
+    $sql = "SELECT status, COUNT(*) AS count 
+            FROM complaints 
+            GROUP BY status";
+    return mysqli_query($conn, $sql);
+}
+
+// Complaints per apartment
+function getComplaintsByApartment() {
+    global $conn;
+    $sql = "SELECT a.name AS apartment_name, a.block, a.floor, COUNT(c.id) AS count
+            FROM complaints c
+            LEFT JOIN apartments a ON c.location = a.id
+            GROUP BY c.location";
+    return mysqli_query($conn, $sql);
+}
+
+// Recent complaints (last 10)
+function getRecentComplaints($limit = 10) {
+    global $conn;
+    $sql = "SELECT c.id, c.title, c.category, c.priority, c.status, 
+                   CONCAT(r.first_name,' ',r.last_name) AS resident_name,
+                   a.name AS apartment_name, a.block, a.floor, c.incident_date
+            FROM complaints c
+            JOIN residents r ON c.resident_id = r.id
+            LEFT JOIN apartments a ON c.location = a.id
+            WHERE c.status != 'Resolved'
+            ORDER BY c.id DESC
+            LIMIT ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $limit);
+    mysqli_stmt_execute($stmt);
+    return mysqli_stmt_get_result($stmt);
 }
 
 
