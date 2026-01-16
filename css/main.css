@@ -138,6 +138,7 @@ body {
 
 .toast.error {
     background-color: #e74c3c;
+    color: #fff;
 }
 
 .toast.warning {

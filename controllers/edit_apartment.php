@@ -18,9 +18,26 @@ if (isset($_GET['id'])) {
     $success = addApartment($name, $floor, $block);
 }
 
-if ($success) {
-    header("Location: ../pages/admin/apartment_list.php?success=1");
+// if ($success) {
+//     header("Location: ../pages/admin/apartment_list.php?success=1");
+// } else {
+//     header("Location: ../pages/admin/apartment_list.php?error=1");
+// }
+// exit();
+
+if (isset($_GET['id'])) {
+    $redirectUrl = "../pages/admin/edit_apartment.php?id=" . (int)$_GET['id'] . "&";
 } else {
-    header("Location: ../pages/admin/apartment_list.php?error=1");
+    $redirectUrl = "../pages/admin/edit_apartment.php?";
 }
+
+if ($success) {
+    $message = isset($_GET['id']) ? "Apartment updated successfully!" : "Apartment added successfully!";
+    $redirectUrl .= "msg=success&text=" . urlencode($message);
+} else {
+    $message = isset($_GET['id']) ? "Failed to update apartment." : "Failed to add apartment.";
+    $redirectUrl .= "msg=error&text=" . urlencode($message);
+}
+
+header("Location: $redirectUrl");
 exit();
