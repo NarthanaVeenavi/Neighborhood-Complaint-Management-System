@@ -51,6 +51,7 @@ CREATE TABLE IF NOT EXISTS complaints (
   priority ENUM('Low','Medium','High') DEFAULT 'Medium',
   attachment VARCHAR(255) DEFAULT NULL,
   status ENUM('Pending','In Progress','Resolved','Rejected') DEFAULT 'Pending',
+  comment TEXT,
   created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   KEY resident_id (resident_id),
