@@ -30,14 +30,14 @@ if (!$complaint) {
 <html>
 <head>
     <title>Edit Complaint Status & Add Comment</title>
-    <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/register.css">
 </head>
 <body class="admin_body">
 
 <?php include '../../includes/header.php'; ?>
 
-<div class="container" style="max-width:600px; margin:auto; margin-top:50px;">
+<div class="container" style="max-width:600px; margin-bottom:40px;">
     <h2 style="text-align:center;">Update Complaint Status & Add Comment</h2>
 
     <form action="../../controllers/update_complaint.php" method="POST">
@@ -51,50 +51,28 @@ if (!$complaint) {
         <label>Complaint Title</label>
         <input type="text" value="<?= htmlspecialchars($complaint['title']) ?>" disabled>
 
+        <label>Complaint Description</label>
+        <textarea disabled><?= htmlspecialchars($complaint['description']) ?></textarea>
+
         <label>Status</label>
         <select name="status" required>
-            <option value="Open" <?= $complaint['status'] === 'Open' ? 'selected' : '' ?>>Open / Pending</option>
+            <option value="Pending" <?= $complaint['status'] === 'Pending' ? 'selected' : '' ?>>Pending</option>
             <option value="In Progress" <?= $complaint['status'] === 'In Progress' ? 'selected' : '' ?>>In Progress</option>
+            <option value="Resolved" <?= $complaint['status'] === 'Resolved' ? 'selected' : '' ?>>Resolved</option>
+            <option value="Rejected" <?= $complaint['status'] === 'Rejected' ? 'selected' : '' ?>>Rejected</option>
             <option value="Closed" <?= $complaint['status'] === 'Closed' ? 'selected' : '' ?>>Closed</option>
         </select>
 
         <label>Add Comment</label>
-        <textarea name="admin_comment" placeholder="Add a comment for this complaint..." rows="4"></textarea>
+        <textarea name="comment"><?= htmlspecialchars($complaint['comment']) ?></textarea>
 
         <br>
-        <button type="submit" class="btn">Update Complaint</button>
-        <a href="list_complaints.php" class="btn cancel-btn" style="margin-left:10px;">Cancel</a>
-    </form>
-
-    <hr>
-
-    <!-- Show previous comments -->
-    <h3>Previous Comments</h3>
-    <?php
-    $sql = "SELECT cc.comment_text, r.first_name, r.last_name, cc.created_at
-            FROM complaint_comments cc
-            JOIN residents r ON cc.admin_id = r.id
-            WHERE cc.complaint_id = ?
-            ORDER BY cc.created_at DESC";
-    $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "i", $complaint_id);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-
-    if ($result && mysqli_num_rows($result) > 0):
-        while ($row = mysqli_fetch_assoc($result)):
-    ?>
-        <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
-            <strong><?= htmlspecialchars($row['first_name'] . ' ' . $row['last_name']) ?></strong> 
-            <em>(<?= $row['created_at'] ?>)</em>
-            <p><?= nl2br(htmlspecialchars($row['comment_text'])) ?></p>
+        <div style="text-align:center; display:flex; justify-content:center; gap:10px;">
+            <button type="button" onclick="location.href='list_complaints.php'">Cancel</button>
+            <button type="submit">Update Complaint</button>
         </div>
-    <?php
-        endwhile;
-    else:
-        echo "<p>No comments yet.</p>";
-    endif;
-    ?>
+
+    </form>
 
 </div>
 

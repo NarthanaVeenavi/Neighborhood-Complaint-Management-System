@@ -113,6 +113,7 @@ function getComplaintById($id) {
                 c.priority,
                 c.incident_date,
                 c.status,
+                c.comment,
                 c.location AS apartment_id,  -- location column stores apartment ID
                 CONCAT(a.name, ' | Block ', a.block, ' | Floor ', a.floor) AS apartment_name, -- display
 
@@ -134,13 +135,13 @@ function getComplaintById($id) {
 }
 
 /* UPDATE status */
-function updateComplaintStatus($id, $status) {
+function updateComplaintStatusandComment($id, $status, $comment) {
     global $conn;
 
     $stmt = mysqli_prepare($conn,
-        "UPDATE complaints SET status=? WHERE id=?"
+        "UPDATE complaints SET status=?, comment=? WHERE id=?"
     );
-    mysqli_stmt_bind_param($stmt, "si", $status, $id);
+    mysqli_stmt_bind_param($stmt, "ssi", $status, $comment, $id);
 
     return mysqli_stmt_execute($stmt);
 }

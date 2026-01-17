@@ -49,6 +49,7 @@ if (!$complaint) {
         <p><strong>Status:</strong> <?= htmlspecialchars($complaint['status']) ?></p>
         <p><strong>Date of Incident:</strong> <?= htmlspecialchars($complaint['incident_date']) ?></p>
         <p><strong>Description:</strong> <br><?= nl2br(htmlspecialchars($complaint['description'])) ?></p>
+        <p><strong>Admin Comment:</strong> <br><?= nl2br(htmlspecialchars($complaint['comment'])) ?></p>
 
         <?php if (!empty($complaint['evidence'])): ?>
             <p><strong>Evidence:</strong> 

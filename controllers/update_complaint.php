@@ -13,23 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $complaint_id = (int) $_POST['complaint_id'];
     $status       = $_POST['status'];
     $admin_id     = $_SESSION['user_id'];
-    $comment      = trim($_POST['admin_comment'] ?? '');
+    $comment = trim($_POST['comment'] ?? '');
+
 
     $success = true;
 
-    $success = updateComplaintStatus($complaint_id, $status);
-
-    if (!empty($comment)) {
-        $stmt = mysqli_prepare($conn,
-            "INSERT INTO complaint_comments (complaint_id, admin_id, comment_text) VALUES (?, ?, ?)"
-        );
-        mysqli_stmt_bind_param($stmt, "iis", $complaint_id, $admin_id, $comment);
-        $commentSuccess = mysqli_stmt_execute($stmt);
-
-        if (!$commentSuccess) {
-            $success = false;
-        }
-    }
+    $success = updateComplaintStatusandComment($complaint_id, $status, $comment);
 
 
     if ($success) {

@@ -284,11 +284,11 @@ tr.viewable:hover {
     color: white;
     text-decoration: none;
 }
-.status-pending, .status-open {
+.status-pending{
     color: #d69e2e;
     font-weight: 500;
 }
-.status-in-progress {
+.status-In-Progress {
     color: #3182ce;
     font-weight: 500;
 }
