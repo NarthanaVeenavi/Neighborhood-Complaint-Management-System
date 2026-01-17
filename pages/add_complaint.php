@@ -92,7 +92,7 @@ $apartments = getAllApartments();
         </select>
 
         <label>Date of Incident</label>
-        <input type="date" name="incident_date" 
+        <input type="date" name="incident_date" id="incident_date"
                value="<?= htmlspecialchars($complaint['incident_date'] ?? '') ?>" required>
         <span id="incident_dateError" class="error"></span>
 

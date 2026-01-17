@@ -39,6 +39,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Disable future dates for the Incident Date field
+    const incidentDateField = document.getElementById("incident_date");
+    if (incidentDateField) {
+        const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+        incidentDateField.setAttribute('max', today); // Disable future dates
+    }
+
     const form = document.querySelector("form");
     if (!form) return;
 

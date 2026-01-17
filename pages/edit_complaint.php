@@ -74,7 +74,7 @@ $complaint = getComplaintById($complaint_id);
         </select>
 
         <label>Date of Incident</label>
-        <input type="date" name="incident_date" value="<?= htmlspecialchars($complaint['incident_date'] ?? '') ?>" required>
+        <input type="date" name="incident_date" id="incident_date" value="<?= htmlspecialchars($complaint['incident_date'] ?? '') ?>" required>
 
         <label>Priority</label>
         <div class="priority-group">
