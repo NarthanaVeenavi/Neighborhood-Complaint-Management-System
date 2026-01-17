@@ -133,9 +133,6 @@ function getComplaintById($id) {
     return mysqli_fetch_assoc($result);
 }
 
-
-
-
 /* UPDATE status */
 function updateComplaintStatus($id, $status) {
     global $conn;
@@ -239,6 +236,9 @@ $stmt->execute();
     return $stmt->execute();
 }
 
+
+
+
 /*Summaries*/
 // Total complaints
 function getTotalComplaints() {
@@ -262,7 +262,9 @@ function getComplaintsByPriority() {
     global $conn;
     $sql = "SELECT priority, COUNT(*) AS count 
             FROM complaints 
+            WHERE status != 'Resolved'
             GROUP BY priority";
+            
     return mysqli_query($conn, $sql);
 }
 

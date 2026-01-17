@@ -58,9 +58,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     );
 
     if ($success) {
-        header("Location: ../pages/add_complaint.php?success=1");
+    header("Location: ../pages/add_complaint.php?msg=success&text=" . urlencode("Complaint submitted successfully!"));
     } else {
-        echo "Failed to save complaint: " . mysqli_error($conn);
+        header("Location: ../pages/add_complaint.php?msg=error&text=" . urlencode("Failed to submit complaint. Please try again."));
     }
+
     exit();
 }

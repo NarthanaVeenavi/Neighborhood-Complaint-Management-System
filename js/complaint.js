@@ -1,73 +1,89 @@
-function validateForm() {
-    let isValid = true;
+document.addEventListener("DOMContentLoaded", () => {
+    const toastContainer = document.getElementById("toastContainer");
 
-    const userName = document.querySelector('input[name="user_name"]');
-    const email = document.querySelector('input[name="email"]');
-    const houseNo = document.querySelector('input[name="house_no"]');
-    const contactNo = document.querySelector('input[name="contact_no"]');
-    const complaintTitle = document.querySelector('input[name="complaint_title"]');
-    const category = document.querySelector('select[name="category"]');
-    const complaintDesc = document.querySelector('textarea[name="complaint"]');
-    const incidentDate = document.querySelector('input[name="incident_date"]');
+    function showToast(message, type = "success") {
+        if (!toastContainer) return;
 
-    // Clear all previous error messages
-    document.querySelectorAll('.error').forEach(span => span.innerText = '');
+        const toast = document.createElement("div");
+        toast.className = `toast ${type}`;
+        toast.textContent = message;
+        toastContainer.appendChild(toast);
 
-    // Full Name
-    if (userName.value.trim() === "") {
-        document.getElementById('user_nameError').innerText = "Full name is required.";
-        isValid = false;
+        setTimeout(() => toast.classList.add("show"), 50);
+
+        setTimeout(() => {
+            toast.classList.remove("show");
+            setTimeout(() => {
+                if (toast.parentNode) toast.remove();
+            }, 500);
+        }, 3000);
+    }
+    // ─── Read URL parameters and show toast ───
+    const urlParams = new URLSearchParams(window.location.search);
+
+    if (urlParams.has("msg")) {
+        const msgType = urlParams.get("msg");
+        const text = urlParams.get("text") || "Operation completed";
+
+        let type = "success";
+        if (msgType === "error") type = "error";
+        if (msgType === "warning") type = "warning";
+
+        showToast(text, type);
+
+        // Redirect after success only
+        if (type === "success") {
+            setTimeout(() => {
+                window.location.href = "list_my_complaints.php";
+            }, 3000);
+        }
     }
 
-    // Email
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (email.value.trim() === "") {
-        document.getElementById('emailError').innerText = "Email is required.";
-        isValid = false;
-    } else if (!emailPattern.test(email.value.trim())) {
-        document.getElementById('emailError').innerText = "Enter a valid email address.";
-        isValid = false;
-    }
+    const form = document.querySelector("form");
+    if (!form) return;
 
-    // House No
-    if (houseNo.value.trim() === "") {
-        document.getElementById('house_noError').innerText = "House/Apartment number is required.";
-        isValid = false;
-    }
+    form.addEventListener("submit", function (e) {
 
-    // Contact No
-    const phonePattern = /^[0-9]{10}$/;
-    if (contactNo.value.trim() === "") {
-        document.getElementById('contact_noError').innerText = "Contact number is required.";
-        isValid = false;
-    } else if (!phonePattern.test(contactNo.value.trim())) {
-        document.getElementById('contact_noError').innerText = "Enter a valid 10-digit number.";
-        isValid = false;
-    }
+        const title = form.querySelector("input[name='complaint_title']");
+        const category = form.querySelector("select[name='category']");
+        const description = form.querySelector("textarea[name='complaint']");
+        const date = form.querySelector("input[name='incident_date']");
+        const priority = form.querySelector("input[name='priority']:checked");
 
-    // Complaint Title
-    if (complaintTitle.value.trim() === "") {
-        document.getElementById('complaint_titleError').innerText = "Complaint title is required.";
-        isValid = false;
-    }
+        if (!title.value.trim()) {
+            e.preventDefault();
+            showToast("Complaint title is required.", "error");
+            title.focus();
+            return;
+        }
 
-    // Complaint Category
-    if (category.value === "") {
-        document.getElementById('categoryError').innerText = "Please select a complaint category.";
-        isValid = false;
-    }
+        if (!category.value) {
+            e.preventDefault();
+            showToast("Please select a complaint category.", "error");
+            category.focus();
+            return;
+        }
 
-    // Complaint Description
-    if (complaintDesc.value.trim() === "") {
-        document.getElementById('complaintError').innerText = "Please enter complaint description.";
-        isValid = false;
-    }
+        if (!description.value.trim()) {
+            e.preventDefault();
+            showToast("Complaint description cannot be empty.", "error");
+            description.focus();
+            return;
+        }
 
-    // Incident Date
-    if (incidentDate.value === "") {
-        document.getElementById('incident_dateError').innerText = "Incident date is required.";
-        isValid = false;
-    }
+        if (!date.value) {
+            e.preventDefault();
+            showToast("Please select incident date.", "error");
+            date.focus();
+            return;
+        }
 
-    return isValid;
-}
+        if (!priority) {
+            e.preventDefault();
+            showToast("Please select complaint priority.", "error");
+            return;
+        }
+    });
+
+});
+

@@ -8,6 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $apartment_id = mysqli_real_escape_string($conn, $_POST['apartment_id']);
     $phone        = mysqli_real_escape_string($conn, $_POST['phone']);
     $email        = mysqli_real_escape_string($conn, $_POST['email']);
+    $username     = mysqli_real_escape_string($conn, $_POST['username']);
     $joining_date = mysqli_real_escape_string($conn, $_POST['joining_date']);
     $password     = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
@@ -22,9 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Insert if email is unique
     $sql = "INSERT INTO residents 
-            (first_name, last_name, apartment_id, phone, email, joining_date, password)
+            (first_name, last_name, apartment_id, phone, email, username, joining_date, password)
             VALUES 
-            ('$first_name', '$last_name', '$apartment_id', '$phone', '$email', '$joining_date', '$password')";
+            ('$first_name', '$last_name', '$apartment_id', '$phone', '$email', '$username', '$joining_date', '$password')";
 
     if (mysqli_query($conn, $sql)) {
         header("Location: ../pages/register.php?success=1");

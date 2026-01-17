@@ -46,6 +46,9 @@ $apartments = getAllApartments();
                 <label>Email</label>
                 <input type="email" name="email" required>
 
+                <label>User Name</label>
+                <input type="text" name="username" required>
+
                 <label>Joining Date</label>
                 <input type="date" name="joining_date" id="joining_date" required>
 

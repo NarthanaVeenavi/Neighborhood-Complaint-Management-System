@@ -12,6 +12,7 @@ $success = updateResidentProfile(
     $_POST['first_name'],
     $_POST['last_name'],
     $_POST['email'],
+    $_POST['username'],
     $_POST['phone'],
     $_POST['apartment_id'],
     $_POST['joining_date'],

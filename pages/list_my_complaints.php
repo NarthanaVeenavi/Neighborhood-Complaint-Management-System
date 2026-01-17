@@ -5,7 +5,7 @@ require_once '../php/complaints_model.php';
 
 // Check resident login
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'resident') {
-    header("Location: ../login.php");
+    header("Location: login.php");
     exit();
 }
 

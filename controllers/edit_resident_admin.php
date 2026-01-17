@@ -28,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_POST['first_name'],
         $_POST['last_name'],
         $_POST['email'],
+        $_POST['username'],
         $_POST['phone'],
         $_POST['apartment_id'],
         $role,

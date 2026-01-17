@@ -25,8 +25,8 @@
 
         <form method="post" action="../php/login.php">
 
-            <label>Email</label>
-            <input type="email" name="email" required>
+            <label>User Name</label>
+            <input type="text" name="username" required>
 
             <label>Password</label>
             <input type="password" name="password" required>

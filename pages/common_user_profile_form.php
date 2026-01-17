@@ -12,6 +12,9 @@
         <label>Email</label>
         <input type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" required>
 
+        <label>Username</label>
+        <input type="text" name="username" value="<?= htmlspecialchars($user['username']) ?>" required>
+
         <label>Phone</label>
         <input type="text" name="phone" value="<?= htmlspecialchars($user['phone']) ?>" required>
 

@@ -40,7 +40,9 @@ if ($attachment) {
 }
 
 if ($stmt->execute()) {
-    header("Location: ../pages/list_my_complaints.php?updated=1");
+    header("Location: ../pages/edit_complaint.php?msg=success&text=" . urlencode("Complaint updated successfully!"));
 } else {
-    echo "Update failed: " . $stmt->error;
+    header("Location: ../pages/edit_complaint.php?msg=error&text=" . urlencode("Failed to update complaint."));
 }
+exit();
+

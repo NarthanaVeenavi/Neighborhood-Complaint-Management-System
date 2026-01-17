@@ -4,10 +4,11 @@ include '../db/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    // $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = $_POST['password'];
 
-    $sql = "SELECT id, password, role, first_name, last_name FROM residents WHERE email='$email' LIMIT 1";
+    $sql = "SELECT id, password, role, first_name, last_name FROM residents WHERE username='$username' LIMIT 1";
     $result = mysqli_query($conn, $sql);
 
     if ($result && mysqli_num_rows($result) === 1) {
@@ -31,11 +32,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
 
         } else {
-            header("Location: ../pages/login.php?error=Invalid email or password!");
+            header("Location: ../pages/login.php?error=Invalid username or password!");
             exit();
         }
     } else {
-        header("Location: ../pages/login.php?error=Invalid email or password!");
+        header("Location: ../pages/login.php?error=Invalid username or password!");
         exit();
     }
 }

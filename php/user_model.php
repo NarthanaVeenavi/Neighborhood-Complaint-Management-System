@@ -9,6 +9,7 @@ function getResidentById($id) {
             r.first_name, 
             r.last_name, 
             r.email, 
+            r.username,
             r.phone, 
             r.apartment_id,
             r.role,
@@ -96,21 +97,22 @@ function getResidentByIdAdmin($id) {
     mysqli_stmt_execute($stmt);
     return mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
 }
-function updateResidentProfile($id, $first, $last, $email, $phone, $apt, $joining_date) {
+function updateResidentProfile($id, $first, $last, $email, $username, $phone, $apt, $joining_date) {
     global $conn;
 
     $sql = "UPDATE residents 
-            SET first_name=?, last_name=?, email=?, phone=?, apartment_id=?, joining_date=? 
+            SET first_name=?, last_name=?, email=?, username=?, phone=?, apartment_id=?, joining_date=? 
             WHERE id=?";
 
     $stmt = mysqli_prepare($conn, $sql);
 
     mysqli_stmt_bind_param(
         $stmt,
-        "ssssisi",
+        "sssssisi",
         $first,
         $last,
         $email,
+        $username,
         $phone,
         $apt,
         $joining_date,
@@ -122,21 +124,22 @@ function updateResidentProfile($id, $first, $last, $email, $phone, $apt, $joinin
 
 
 /* Update resident by Admin */
-function updateResidentByAdmin($id, $first, $last, $email, $phone, $apt, $role, $joining_date) {
+function updateResidentByAdmin($id, $first, $last, $email, $username, $phone, $apt, $role, $joining_date) {
     global $conn;
 
     $sql = "UPDATE residents 
-            SET first_name=?, last_name=?, email=?, phone=?, apartment_id=?, role=?, joining_date=?
+            SET first_name=?, last_name=?, email=?, username=?, phone=?, apartment_id=?, role=?, joining_date=?
             WHERE id=?";
 
     $stmt = mysqli_prepare($conn, $sql);
 
     mysqli_stmt_bind_param(
         $stmt,
-        "ssssissi",
+        "sssssissi",
         $first,
         $last,
         $email,
+        $username,
         $phone,
         $apt,
         $role,

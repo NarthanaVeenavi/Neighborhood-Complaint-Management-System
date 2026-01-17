@@ -36,6 +36,7 @@ $complaint = getComplaintById($complaint_id);
 <?php include '../includes/header.php'; ?>
 
 <div class="container">
+    <div id="toastContainer"></div>
     <h2 style="text-align:center; margin-top:20px;">Edit Complaint</h2>
 
     <?php if (!empty($error)): ?>
@@ -92,18 +93,7 @@ $complaint = getComplaintById($complaint_id);
     </form>
 </div>
 
-<script>
-function validateForm() {
-    const title = document.querySelector('[name="complaint_title"]').value.trim();
-    const desc  = document.querySelector('[name="complaint"]').value.trim();
-    const loc   = document.querySelector('[name="location"]').value.trim();
-    if(!title || !desc || !loc) {
-        alert('Please fill all required fields.');
-        return false;
-    }
-    return true;
-}
-</script>
+<script src="../js/complaint.js"></script>
 
 <?php include '../includes/footer.php'; ?>
 </body>

@@ -5,7 +5,7 @@ require_once '../php/complaints_model.php';
 require_once '../php/apartment_model.php';
 
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'resident') {
-    header("Location: ../login.php");
+    header("Location: login.php");
     exit();
 }
 
@@ -36,13 +36,13 @@ $apartments = getAllApartments();
     <title><?= $isEdit ? 'Edit Complaint' : 'Add Complaint' ?></title>
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/register.css">
-    <script src="../js/complaint.js" defer></script>
 </head>
 <body>
 
 <?php include '../includes/header.php'; ?>
 
 <div class="container">
+    <div id="toastContainer"></div>
     <h2><?= $isEdit ? 'Edit Complaint' : 'Add Complaint' ?></h2>
 
     <?php if (isset($_GET['error'])): ?>
@@ -131,6 +131,8 @@ $apartments = getAllApartments();
         </button>
     </form>
 </div>
+
+<script src="../js/complaint.js"></script>
 
 <?php include '../includes/footer.php'; ?>
 
