@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../php/complaints_model';
+require_once '../php/complaints_model.php';
 
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     exit("Unauthorized access");
