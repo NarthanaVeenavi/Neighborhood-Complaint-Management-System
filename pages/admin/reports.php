@@ -37,6 +37,9 @@ while ($row = $byStatus->fetch_assoc()) {
 // Default values
 $pendingCount = 0;
 $resolvedCount = 0;
+$inProgressCount = 0;
+$rejectedCount = 0;
+$closedCount = 0;
 
 $highCount = 0;
 $mediumCount = 0;
@@ -49,6 +52,15 @@ foreach ($statusLabels as $i => $status) {
     }
     if (strtolower($status) === 'resolved') {
         $resolvedCount = $statusData[$i];
+    }
+    if (strtolower($status) === 'in progress') {
+        $inProgressCount = $statusData[$i];
+    }
+    if (strtolower($status) === 'rejected') {
+        $rejectedCount = $statusData[$i];
+    }
+    if (strtolower($status) === 'closed') {
+        $closedCount = $statusData[$i];
     }
 }
 
@@ -94,6 +106,21 @@ foreach ($priorityLabels as $i => $priority) {
     <div class="report-card resolved">
         <h4>Resolved</h4>
         <p><?= $resolvedCount ?></p>
+    </div>
+
+    <div class="report-card in-progress">
+        <h4>In Progress</h4>
+        <p><?= $inProgressCount ?></p>  
+    </div>
+
+    <div class="report-card rejected">
+        <h4>Rejected</h4>
+        <p><?= $rejectedCount ?></p>
+    </div>
+
+    <div class="report-card closed">
+        <h4>Closed</h4>
+        <p><?= $closedCount ?></p>  
     </div>
 
     <div class="report-card high">
@@ -193,12 +220,14 @@ new Chart(document.getElementById('statusChart'), {
             backgroundColor: [
                 'rgba(54, 162, 235, 0.7)',
                 'rgba(255, 206, 86, 0.7)',
-                'rgba(75, 192, 192, 0.7)'
+                'rgba(75, 192, 192, 0.7)',
+                'rgba(153, 102, 255, 0.7)'
             ],
             borderColor: [
                 'rgba(54, 162, 235, 1)',
                 'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)'
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)'
             ],
             borderWidth: 1
         }]

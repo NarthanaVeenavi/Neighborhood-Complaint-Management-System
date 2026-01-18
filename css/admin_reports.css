@@ -55,6 +55,9 @@
 /* Color variants */
 .report-card.pending { border-left-color: #ffc107; }
 .report-card.resolved { border-left-color: #28a745; }
+.report-card.in-progress { border-left-color: #17a2b8; }
+.report-card.rejected { border-left-color: #d93272; }
+.report-card.closed { border-left-color: #6c757d; }
 .report-card.high { border-left-color: #dc3545; }
 .report-card.medium { border-left-color: #fd7e14; }
 .report-card.low { border-left-color: #20c997; }

@@ -84,7 +84,7 @@ $end   = min($offset + $limit, $totalComplaints);
                             </span>
                         </td>
                         <td class="action-cell">
-                            <?php if (strtolower($row['status'] ?? '') === 'pending' || strtolower($row['status'] ?? '') === 'open'): ?>
+                            <?php if (strtolower($row['status'] ?? '') === 'pending'): ?>
                                 <a href="edit_complaint.php?id=<?= $row['id'] ?>" class="btn btn-edit">
                                     <i class="fas fa-edit"></i> Edit
                                 </a>
