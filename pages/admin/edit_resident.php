@@ -11,7 +11,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 
 // Get resident ID from URL
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    header("Location: residents_list.php");
+    header("Location: ./user_list.php");
     exit();
 }
 
@@ -22,12 +22,12 @@ $user = getResidentById($resident_id);
 $apartments = getAllApartments();
 
 if (!$user) {
-    header("Location: residents_list.php");
+    header("Location: ./user_list.php");
     exit();
 }
 
 $page_title = "Edit Resident";
-$cancel_url = "residents_list.php";
+$cancel_url = "./user_list.php";
 $form_action = "../../controllers/edit_resident_admin.php?id=" . $resident_id;
 ?>
 
@@ -42,10 +42,17 @@ $form_action = "../../controllers/edit_resident_admin.php?id=" . $resident_id;
 <body class="reg_body">
 
 <?php include '../../includes/header.php'; ?>
+    <!-- Hidden div to store the session flag -->
+    <div id="profileUpdatedFlag" style="display: none;">
+        <?php echo isset($_SESSION['profile_updated']) && $_SESSION['profile_updated'] === true ? 'true' : 'false'; ?>
+    </div>
+    <!-- Toast container -->
+    <div id="toastContainer"></div>
 
 <?php include '../common_user_profile_form.php'; ?>
 
 <?php include '../../includes/footer.php'; ?>
+<script src="../../js/edit_resident.js"></script>
 
 </body>
 </html>

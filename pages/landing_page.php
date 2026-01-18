@@ -21,11 +21,6 @@
                 A centralized platform for residents to report neighborhood issues
                 and for administrators to manage them efficiently.
             </p>
-
-            <div class="actions">
-                <a href="register.php" class="btn primary">Get Started</a>
-                <a href="login.php" class="btn secondary">Login</a>
-            </div>
         </div>
     </section>
 

@@ -27,6 +27,7 @@ label {
     font-weight: bold;
     color: #333;
 }
+textarea,
 select,
 input[type="text"],
 input[type="email"],
@@ -131,4 +132,56 @@ button:hover {
     gap: 12px;
     margin-top: 20px;
 }
+.priority-group {
+    display: flex;
+    gap: 15px;
+    margin: 10px 0 20px;
+}
+
+.priority {
+    position: relative;
+    cursor: pointer;
+}
+
+.priority input {
+    display: none;
+}
+
+.priority span {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 14px;
+    border: 2px solid transparent;
+    transition: 0.2s ease;
+}
+
+/* Low */
+.priority.low span {
+    background: #eafaf1;
+    color: #27ae60;
+    border-color: #27ae60;
+}
+
+/* Medium */
+.priority.medium span {
+    background: #fff4e6;
+    color: #e67e22;
+    border-color: #e67e22;
+}
+
+/* High */
+.priority.high span {
+    background: #fdecea;
+    color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+/* Selected effect */
+.priority input:checked + span {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: scale(1.05);
+}
+
 

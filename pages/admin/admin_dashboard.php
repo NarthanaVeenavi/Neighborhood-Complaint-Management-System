@@ -25,7 +25,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 
 <?php include '../../includes/header.php'; ?>
 
-<div class="container">
+<div class="container" style="margin-top: 100px;">
     <h3>Admin Dashboard</h3>
 
     <div class="dashboard-grid">

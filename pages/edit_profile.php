@@ -15,7 +15,7 @@ $apartments = getAllApartments();
 ?>
 
 <?php $page_title = "Edit Profile"; ?>
-<?php $cancel_url = "residents_list.php"; ?>
+<?php $cancel_url = "profile.php"; ?>
 <?php $form_action = "../controllers/edit_profile.php"; ?>
 
 <!DOCTYPE html>
@@ -29,29 +29,13 @@ $apartments = getAllApartments();
 <body class="reg_body">
 
     <?php include '../includes/header.php'; ?>
+    <!-- Toast container -->
+    <div id="toastContainer"></div>
     
-    <?php if (isset($_GET['updated'])): ?>
-        <div class="success-message" id="successMessage">
-            Profile updated successfully 
-        </div>
-    <?php endif; ?>
-
-    <?php if (isset($_GET['error'])): ?>
-        <div class="error-message">
-            Failed to update profile please try again.
-        </div>
-    <?php endif; ?>
-
 <?php include '../pages/common_user_profile_form.php'; ?>
 <?php include '../includes/footer.php'; ?>
 
-<script>
-    setTimeout(() => {
-        const msg = document.getElementById("successMessage");
-        if (msg) msg.style.display = "none";
-    }, 3000);
-</script>
-
+<script src="../js/edit_profile.js"></script>
 
 </body>
 </html>

@@ -1,20 +1,6 @@
 <div class="container">
     <h2><?= htmlspecialchars($page_title) ?></h2>
 
-    <!-- Success message -->
-    <?php if (!empty($success)): ?>
-        <div class="success-message" id="successMessage">
-            <?= htmlspecialchars($success) ?>
-        </div>
-    <?php endif; ?>
-
-    <!-- Error message -->
-    <?php if (!empty($error)): ?>
-        <div class="error-message">
-            <?= htmlspecialchars($error) ?>
-        </div>
-    <?php endif; ?>
-
     <form method="POST" action="<?= htmlspecialchars($form_action) ?>">
 
         <label>First Name</label>
@@ -26,8 +12,11 @@
         <label>Email</label>
         <input type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" required>
 
+        <label>Username</label>
+        <input type="text" name="username" value="<?= htmlspecialchars($user['username']) ?>" required>
+
         <label>Phone</label>
-        <input type="text" name="phone" value="<?= htmlspecialchars($user['phone']) ?>">
+        <input type="text" name="phone" value="<?= htmlspecialchars($user['phone']) ?>" required>
 
         <?php if ($user['role'] === 'resident'): ?>
             <label>Apartment No</label>
@@ -46,9 +35,9 @@
                 <?php endwhile; ?>
             </select>
         <?php endif; ?>
-        
+
         <label>Joining Date</label>
-        <input type="date" name="joining_date" value="<?= htmlspecialchars(date('Y-m-d', strtotime($user['joining_date']))) ?>" required>
+        <input type="date" name="joining_date" id="joining_date" value="<?= htmlspecialchars(date('Y-m-d', strtotime($user['joining_date']))) ?>" required>
 
         <div class="form-actions">
             <button><a href="<?= htmlspecialchars($cancel_url) ?>">Cancel</a></button>
@@ -56,10 +45,3 @@
         </div>
     </form>
 </div>
-
-<script>
-    setTimeout(() => {
-        const msg = document.getElementById("successMessage");
-        if (msg) msg.style.display = "none";
-    }, 3000);
-</script>

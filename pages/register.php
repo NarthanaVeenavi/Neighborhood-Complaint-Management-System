@@ -15,6 +15,9 @@ $apartments = getAllApartments();
         <?php include '../includes/header.php'; ?> 
 
         <div class="container">
+            <!-- Toast container -->
+            <div id="toastContainer"></div>
+
             <h2>User Registration</h2>
             <form method="post" action="../php/register.php" onsubmit="return validateForm();">
 
@@ -25,7 +28,7 @@ $apartments = getAllApartments();
                 <input type="text" name="last_name" required>
 
                 <label>Apartment</label>
-                <select name="apartment_id" required>
+                <select name="apartment_id">
                     <option value="">-- Select Apartment --</option>
 
                     <?php while ($apt = $apartments->fetch_assoc()): ?>
@@ -43,8 +46,11 @@ $apartments = getAllApartments();
                 <label>Email</label>
                 <input type="email" name="email" required>
 
+                <label>User Name</label>
+                <input type="text" name="username" required>
+
                 <label>Joining Date</label>
-                <input type="date" name="joining_date" required>
+                <input type="date" name="joining_date" id="joining_date" required>
 
                 <label>Password</label>
                 <input type="password" name="password" id="password" required>

@@ -18,12 +18,15 @@
 
     <!-- Login Form -->
     <div class="container" id="login_container">
+        <!-- Toast container -->
+        <div id="toastContainer"></div>
+
         <h2>User Login</h2>
 
         <form method="post" action="../php/login.php">
 
-            <label>Email</label>
-            <input type="email" name="email" required>
+            <label>User Name</label>
+            <input type="text" name="username" required>
 
             <label>Password</label>
             <input type="password" name="password" required>
@@ -35,6 +38,8 @@
             <a href="register.php">Don’t have an account? Register</a>
         </div>
     </div>
+    <!-- Footer -->
     <?php include '../includes/footer.php'; ?>
+    <script src="../js/login.js"></script>
 </body>
 </html>

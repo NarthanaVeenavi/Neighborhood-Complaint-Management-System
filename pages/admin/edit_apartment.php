@@ -27,22 +27,23 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/register.css">
 </head>
-<body class="reg_body">
+<body>
 
 <?php include '../../includes/header.php'; ?>
 
 <div class="container">
+    <div id="toastContainer"></div>
     <h2><?= $page_title ?></h2>
 
     <form method="POST" action="<?= htmlspecialchars($form_action) ?>">
         <label>Apartment Name</label>
-        <input type="text" name="name" value="<?= $apartment['name'] ?? '' ?>" required>
+        <input type="text" name="name" value="<?= $apartment['name'] ?? '' ?>" placeholder="Enter apartment name: Eg: APT-001" required>
 
         <label>Floor</label>
         <input type="number" name="floor" value="<?= $apartment['floor'] ?? '' ?>" required>
 
         <label>Block</label>
-        <input type="text" name="block" value="<?= $apartment['block'] ?? '' ?>" required>
+        <input type="text" name="block" value="<?= $apartment['block'] ?? '' ?>" required placeholder="Enter block: Eg: A or B">
 
         <div class="form-actions"> 
             <button><a href="<?= htmlspecialchars($cancel_url) ?>">Cancel</a></button>
@@ -53,5 +54,6 @@ if (isset($_GET['id'])) {
 </div>
 
 <?php include '../../includes/footer.php'; ?>
+<script src="../../js/apartments.js"></script>
 </body>
 </html>

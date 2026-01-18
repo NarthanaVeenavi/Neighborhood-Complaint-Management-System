@@ -55,7 +55,7 @@ $user = getResidentById($_SESSION['user_id']);
                 </span>
             </div>
         <?php endif; ?>
-        
+
         <div class="profile-row">
             <label>Role</label>
             <span><?= ucfirst($user['role']) ?></span>
@@ -72,8 +72,6 @@ $user = getResidentById($_SESSION['user_id']);
         <a href="/Neighborhood Complaint Management System/pages/logout.php" class="btn btn-logout">Logout</a>
     </div>
 </div>
-
 <?php include '../includes/footer.php'; ?>
-
 </body>
 </html>
